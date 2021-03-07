@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To detect maleria infected person</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/bootstrap.css')}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+
+		.upper{border:3px solid white;border-style: ridge;border-radius: 10px;}
+		.image{width:500px;height:350px;}
+		.btn{border:3px solid;border-style:ridge;border-radius: 10px;width:500px;height:51px;font-size:17px;}
+		.img_frame{border:5px solid;border-style: ridge;border-radius: 10px;}
+	</style>
+</head>
+<body>
+	<div class="container-fluid bg-light">
+		<form  method="post" enctype="multipart/form-data">
+
+		<div class="row sticky-top"style="background-color: navy;">
+			<div class="col text-light upper">
+				<h1 class="ml-4">Malaria Infected Detection</h1>
+			</div>
+			
+		</div>
+
+		<div class="row mt-2">
+			<div class="col offset-3">
+				<div class="bg-light image img_frame">
+					<img src="{{url_for('static',filename='img/doctor.jpg')}}" width="490" height="340" id="img-field">
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="col offset-3 mt-3">
+				<div class="form-group">
+					<input type="file" id="files" class="text-light" name="inp" accept="image/*" onchange="show(event)"/>
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col offset-3">
+				<button class="btn btn-success" type="submit">Predict Image</button>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="col offset-3">
+				<div class="form-group">
+					<textarea class="form-control pt-4" rows=2 readonly style="text-align: center;font-weight: bold;font-size:23px;width:500px;">{{p}}</textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col text-dark bg-light">
+				@copyright malaria detection
+			</div>
+			
+		</div>
+
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		function show(event) {
+
+			var render=new FileReader();
+			var image_field=document.getElementById('img-field');
+			render.onload=function()
+			{
+				if(render.readyState==2)
+				{
+					image_field.src=render.result;
+
+				}
+			}
+
+			render.readAsDataURL(event.target.files[0]);
+		}
+		
+	</script>
+
+</body>
+</html>
